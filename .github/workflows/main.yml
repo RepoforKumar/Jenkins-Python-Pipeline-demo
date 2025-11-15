@@ -31,9 +31,9 @@ jobs:
     steps:
       - name: Clone the Repo
         uses: actions/checkout@v5
-        env:
-          STEP_PYTHON_VER: 3.12 # Step variable
       - name: Setup python ${{env.STEP_PYTHON_VERS}}
+        env:
+         STEP_PYTHON_VER: 3.12 # Step variable
         uses: actions/setup-python@v5
         with:
           python-version: ${{env.STEP_PYTHON_VERS}} #Using Step variable
