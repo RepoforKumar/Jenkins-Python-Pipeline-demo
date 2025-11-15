@@ -1,0 +1,39 @@
+name: varaibles in python project workflow
+on:
+  push:
+    branches:
+      - master
+env: 
+  - PYTHON_VER: 3.9 #Global workflow variable
+jobs:
+  job-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone the Repo
+        uses: actions/checkout@v5
+      - name: Setup python ${{env.PYTHON_VER}}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{env.PYTHON_VER}} #Using Env variable
+  job-var:
+    runs-on: ubuntu-latest
+    env: 
+    - JOB_PYTHON_VER: 3.11 #Job variable
+    steps:
+      - name: Clone the Repo
+        uses: actions/checkout@v5
+      - name: Setup python ${{env.JOB_PYTHON_VER}}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{env.JOB_PYTHON_VER}} #Using Job variable
+  job-step-var:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone the Repo
+        uses: actions/checkout@v5
+        env:
+          STEP_PYTHON_VER: 3.12 # Step variable
+      - name: Setup python ${{env.STEP_PYTHON_VERS}}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{env.STEP_PYTHON_VERS}} #Using Step variable
