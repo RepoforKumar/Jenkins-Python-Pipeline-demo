@@ -1,0 +1,25 @@
+name: Python build workflow
+on:
+  push:
+    branches:
+      - master
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone the Repo
+        uses: actions/checkout@v5
+      - name: Setup python ${{vars.PYTHON_VERSION}}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{vars.PYTHON_VERSION}} #Using Repo variable
+      - name: Install Dependencies
+        run:
+          pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: set python path
+        run: echo "PYTHONPATH"=$GITHUB_WORKSPACE >> $GITHUB_ENV
+      - name: run tests
+        env:
+          mycmd: ${{vars.PYTHONCMD}} #step and repo variable
+        run: $mycmd  
