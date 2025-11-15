@@ -4,7 +4,7 @@ on:
     branches:
       - master
 env: 
-  - PYTHON_VER: 3.9 #Global workflow variable
+  PYTHON_VER: 3.9 #Global workflow variable
 jobs:
   job-workflow:
     runs-on: ubuntu-latest
@@ -18,7 +18,7 @@ jobs:
   job-var:
     runs-on: ubuntu-latest
     env: 
-    - JOB_PYTHON_VER: 3.11 #Job variable
+      JOB_PYTHON_VER: 3.11 #Job variable
     steps:
       - name: Clone the Repo
         uses: actions/checkout@v5
